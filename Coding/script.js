@@ -36,28 +36,34 @@ $(document).ready(function () {
     const filteredExpenses = selectedYear === 'all'
       ? expenses
       : expenses.filter(exp => new Date(exp.date).getFullYear().toString() === selectedYear);
-
+  
+    console.log('Filtered Expenses:', filteredExpenses); // Debugging
+  
     $expenseList.empty(); // Clear the list before appending
     if (filteredExpenses.length === 0) {
       $noExpensesMessage.show();
     } else {
       $noExpensesMessage.hide();
-      filteredExpenses.forEach(exp => {
+      filteredExpenses.forEach((exp, index) => {
         $expenseList.append(`
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            ${exp.title} - $${exp.amount.toFixed(2)} 
-            <span class="text-muted">${new Date(exp.date).toLocaleDateString()}</span>
+          <li class="list-group-item expense-item mb-3 d-flex justify-content-between align-items-center" id="expense-${index}">
+            <span class="expense-date">${new Date(exp.date).toLocaleDateString()}</span>
+            <span class="expense-amount">$${exp.amount.toFixed(2)}</span>
+            <span class="expense-title text-end">${exp.title}</span>
           </li>
         `);
       });
     }
-
+  
     updateChart(filteredExpenses); // Update chart with filtered data
   };
-
-  // Update Chart with progress bars
+  
+  
+  
+  
+  // Ensure `updateChart` does not remove the message
   const updateChart = (filteredExpenses) => {
-    const monthlyTotals = Array(12).fill(0); // Initialize totals for each month
+    const monthlyTotals = Array(12).fill(0);
     filteredExpenses.forEach(exp => {
       const month = new Date(exp.date).getMonth();
       monthlyTotals[month] += exp.amount;
@@ -65,14 +71,10 @@ $(document).ready(function () {
   
     const maxExpense = Math.max(...monthlyTotals, 1); // Prevent division by zero
   
-    // Select or create the wrapper for the progress bars
-    let progressBarsWrapper = $('.chart-container .progress-bars-wrapper');
-    if (progressBarsWrapper.length === 0) {
-      progressBarsWrapper = $('<div class="progress-bars-wrapper p-3 mb-4"></div>');
-      $('.chart-container').prepend(progressBarsWrapper); // Add it above the list/message
-    }
-  
-    progressBarsWrapper.empty(); // Clear only the progress bars
+    // Clear previous chart and generate new progress bars
+    const chartContainer = $('.chart-container');
+    chartContainer.empty(); // Clear previous content
+    chartContainer.append('<h5 class="mb-3">Monthly Expenses</h5>');
   
     monthlyTotals.forEach((total, index) => {
       const monthName = [
@@ -82,8 +84,8 @@ $(document).ready(function () {
       const percentage = (total / maxExpense) * 100;
   
       // Add a progress bar for each month
-      progressBarsWrapper.append(`
-        <div class="mb-3">
+      chartContainer.append(`
+        <div class="mb-2">
           <div class="d-flex justify-content-between">
             <span>${monthName}</span>
             <span>$${total.toFixed(2)}</span>
@@ -102,7 +104,8 @@ $(document).ready(function () {
       `);
     });
   };
-  
+
+
 
   // Handle Form Submission
   $expenseForm.on('submit', function (e) {
