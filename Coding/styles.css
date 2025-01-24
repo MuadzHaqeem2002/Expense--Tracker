@@ -1,0 +1,69 @@
+body {
+  background-color: #474747;
+  padding: 20px;
+}
+
+.chart-container {
+  color: #ffffff;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chart-container #noExpensesMessage {
+  font-style: italic;
+  color: rgb(255, 255, 255) !important; 
+}
+
+
+.card {
+  background-color: #5c5b5b;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card .form-label {
+  color: #ffffff; 
+}
+
+
+/* Add New Expense Box Styling */
+.add-expense-box {
+  background-color: #6f42c1;
+  color: white;
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.add-expense-box .btn {
+  background-color: #9d79e0; 
+  border: 2px solid #9d79e0; 
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.progress-bars-wrapper {
+  background-color: #9d79e0; /* Box color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Inner padding */
+  margin-bottom: 20px; /* Space below the box */
+}
+
+.progress-bars-wrapper h5 {
+  color: #ffffff; /* Title color */
+  margin-bottom: 15px;
+}
+
+.progress {
+  background-color: #ffffff; /* Progress bar background */
+}
+
+.progress-bar {
+  background-color: #4521aa; /* Bar color */
+}
+
+
