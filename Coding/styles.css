@@ -4,14 +4,6 @@ body {
 }
 
 
-
-
-
-#noExpensesMessage {
-  font-style: italic;
-  color: #ffffff;
-}
-
 .card {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -47,6 +39,7 @@ body {
 
   
  /* Responsive layout for vertical progress bars */
+/* Responsive layout for vertical progress bars */
 .chart-container {
   display: flex;
   justify-content: space-between; /* Space between bars */
@@ -80,15 +73,30 @@ body {
 }
 
 .chart-container .d-flex span:first-child {
-  color: #ffffff; /* For month names */
+  color: #ffffff; /* For amounts */
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .chart-container .d-flex span:last-child {
-  color: #ffffff; /* For amounts */
+  color: #ffffff; /* For months */
   font-weight: bold;
   margin-top: 10px;
+  font-size: 1rem; /* Default font size for months */
 }
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .chart-container .d-flex span:last-child {
+    font-size: 0.8rem; /* Smaller font size for months */
+  }
+}
+
+@media (max-width: 576px) {
+  .chart-container .d-flex span:last-child {
+    font-size: 0.6rem; /* Even smaller font size for very small screens */
+  }
+}
+
 
 
