@@ -71,10 +71,9 @@ $(document).ready(function () {
   
     const maxExpense = Math.max(...monthlyTotals, 1); // Prevent division by zero
   
-    // Clear previous chart and generate new progress bars
     const chartContainer = $('.chart-container');
     chartContainer.empty(); // Clear previous content
-    chartContainer.append('<h5 class="mb-3">Monthly Expenses</h5>');
+    
   
     monthlyTotals.forEach((total, index) => {
       const monthName = [
@@ -83,27 +82,27 @@ $(document).ready(function () {
       ][index];
       const percentage = (total / maxExpense) * 100;
   
-      // Add a progress bar for each month
+      // Add a vertical progress bar for each month
       chartContainer.append(`
-        <div class="mb-2">
-          <div class="d-flex justify-content-between">
-            <span>${monthName}</span>
-            <span>$${total.toFixed(2)}</span>
-          </div>
+        <div class="d-flex">
+          
           <div class="progress">
             <div
               class="progress-bar"
               role="progressbar"
-              style="width: ${percentage}%;"
+              style="height: ${percentage}%;"
               aria-valuenow="${percentage}"
               aria-valuemin="0"
               aria-valuemax="100"
             ></div>
           </div>
+          <span>${monthName}</span>
         </div>
       `);
     });
   };
+  
+  
 
 
 
