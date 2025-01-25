@@ -11,10 +11,9 @@ body {
 
 /* Add New Expense Box Styling */
 .add-expense-box {
-  background-color: #ba92cc;  
+  background-color: #ba92cc;
   padding: 20px;
   border-radius: 10px;
-  
 }
 
 .add-expense-box .btn {
@@ -77,12 +76,11 @@ body {
   border: none; /* Remove default border */
   border-radius: 10px;
   padding: 12px; /* Add spacing */
-  
 }
 
 /* Style for the date span */
 #expenseList .expense-date {
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
   color: #0ea5e9; /* Light blue for dates */
   font-weight: bold;
 }
@@ -98,8 +96,3 @@ body {
   text-align: right;
   color: #ffffff; /* White for titles */
 }
-
-
-
-
-

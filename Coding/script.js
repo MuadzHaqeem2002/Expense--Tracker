@@ -6,18 +6,16 @@ $(document).ready(function () {
   const $expenseList = $("#expenseList");
   const $filterYear = $("#filterYear");
   const $noExpensesMessage = $("#noExpensesMessage");
-  const $chartCanvas = $("#expenseChart");
   const $showFormButton = $("#showFormButton");
   const $cancelButton = $("#cancelButton");
-  let chart;
 
-  // Show the Expense Form in the same box
+  // Show the Expense Form
   $showFormButton.on("click", function () {
     $defaultView.hide();
     $formView.show();
   });
 
-  // Hide the Expense Form and show the button
+  // Hide the Expense Form
   $cancelButton.on("click", function () {
     $formView.hide();
     $defaultView.show();
@@ -45,8 +43,6 @@ $(document).ready(function () {
               new Date(exp.date).getFullYear().toString() === selectedYear
           );
 
-    console.log("Filtered Expenses:", filteredExpenses); // Debugging
-
     $expenseList.empty(); // Clear the list before appending
     if (filteredExpenses.length === 0) {
       $noExpensesMessage.show();
@@ -54,7 +50,7 @@ $(document).ready(function () {
       $noExpensesMessage.hide();
       filteredExpenses.forEach((exp, index) => {
         $expenseList.append(`
-          <li class="list-group-item expense-item mb-3 d-flex justify-content-between align-items-center" id="expense-${index}">
+          <li class="list-group-item expense-item mb-3 d-flex justify-content-between align-items-center">
             <span class="expense-date">${new Date(
               exp.date
             ).toLocaleDateString()}</span>
@@ -68,7 +64,7 @@ $(document).ready(function () {
     updateChart(filteredExpenses); // Update chart with filtered data
   };
 
-  // Ensure `updateChart` does not remove the message
+  // Update chart
   const updateChart = (filteredExpenses) => {
     const monthlyTotals = Array(12).fill(0);
     filteredExpenses.forEach((exp) => {
@@ -98,10 +94,8 @@ $(document).ready(function () {
       ][index];
       const percentage = (total / maxExpense) * 100;
 
-      // Add a vertical progress bar for each month
       chartContainer.append(`
         <div class="d-flex">
-          
           <div class="progress">
             <div
               class="progress-bar"
@@ -147,6 +141,6 @@ $(document).ready(function () {
   // Handle Year Filter
   $filterYear.on("change", renderExpenses);
 
-  // Initial call to ensure UI renders correctly
+  // Initial render
   renderExpenses();
 });
