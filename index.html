@@ -4,24 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker</title>
+
+    <!-- Bootstrap CSS for styling -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    
+    <!-- Custom styles -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
+      <!-- Add Expense Section -->
       <div
         class="add-expense-box d-flex justify-content-center align-items-center mb-4"
       >
+        <!-- Default view with "Add New Expense" button -->
         <div id="defaultView">
           <button id="showFormButton" class="btn btn-primary">
             Add New Expense
           </button>
         </div>
+
+        <!-- Form view for adding a new expense -->
         <div id="formView" style="display: none; width: 100%">
           <form id="expenseForm">
             <div class="mb-3">
@@ -30,7 +38,13 @@
             </div>
             <div class="mb-3">
               <label for="amount" class="form-label">Amount</label>
-              <input type="float" min="0" id="amount" class="form-control" required />
+              <input
+                type="float"
+                min="0"
+                id="amount"
+                class="form-control"
+                required
+              />
             </div>
             <div class="mb-3">
               <label for="date" class="form-label">Date</label>
@@ -45,7 +59,10 @@
           </form>
         </div>
       </div>
+
+      <!-- Card for filtering expenses and displaying the chart -->
       <div class="card p-4">
+        <!-- Filter by year dropdown -->
         <div class="mb-4">
           <label
             for="filterYear"
@@ -58,30 +75,45 @@
             <option value="all">All</option>
           </select>
         </div>
+
+        <!-- Chart container to visualize monthly expenses -->
         <div class="chart-container"></div>
+
+        <!-- Message displayed when no expenses are found -->
         <p
           id="noExpensesMessage"
-          class="text-center mt-3"
-          style="
-            display: none;
-            color: #ffffff;
-            font-style: italic;
-            font-size: 1.2rem;
-          "
+          class="no-expenses-message text-center mt-3"
+          style="display: none; color: #ffffff"
         >
           Found no expenses.
         </p>
+
+        <!-- List of expenses -->
         <ul id="expenseList" class="list-group mt-3"></ul>
       </div>
+
+      <!-- Monthly Spending Summary -->
+      <div class="card p-4 mt-4">
+        <h5 class="text-white">Monthly Spending Summary</h5>
+        <ul id="summaryList" class="list-group mt-3"></ul>
+      </div>
     </div>
+
+    <!-- jQuery library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Bootstrap JS for interactivity -->
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Chart.js for charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>

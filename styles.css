@@ -19,37 +19,44 @@ body {
 .add-expense-box .btn {
   background-color: #752a97;
   border-style: none;
-  
 }
 
-/* Responsive layout for vertical progress bars */
+/* Style for "Found no expenses. backgroud"  */
+.no-expenses-message {
+  background-color: #34393f;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+/*Vertical progress bars */
 .chart-container {
   display: flex;
   justify-content: space-between; /* Space between bars */
   padding: 20px;
-  background-color: #b17aca; 
-  border-radius: 10px; /* Rounded corners */
+  background-color: #b17aca;
+  border-radius: 10px;
 }
 
 .chart-container .d-flex {
   flex-direction: column;
   align-items: center;
-  width: 4.5%; /* Default width of each bar, adjusts with flexbox */
+  width: 4.5%;
 }
 
 .chart-container .progress {
   position: relative;
-  width: 100%; 
-  height: 200px; 
-  background-color: #cbbed1; 
+  width: 100%;
+  height: 200px;
+  background-color: #cbbed1;
   border-radius: 10px;
   display: flex;
   flex-direction: column-reverse; /* Ensure bar grows upward */
 }
 
 .chart-container .progress-bar {
-  background-color: #272657; 
-  width: 100%; 
+  background-color: #272657;
+  width: 100%;
 }
 
 .chart-container .d-flex span:last-child {
@@ -62,28 +69,28 @@ body {
 /* Media query for small screens */
 @media (max-width: 768px) {
   .chart-container .d-flex span:last-child {
-    font-size: 0.6rem; /* Smaller font size for months */
+    font-size: 0.6rem;
   }
 }
 
 @media (max-width: 576px) {
   .chart-container .d-flex span:last-child {
-    font-size: 0.4rem; /* Even smaller font size for very small screens */
+    font-size: 0.4rem;
   }
 }
 
 /* Style for grouping individual expense items */
 #expenseList .list-group-item {
-  background-color: #34393f; 
-  border: none; 
+  background-color: #34393f;
+  border: none;
   border-radius: 10px;
-  padding: 12px; 
+  padding: 12px;
 }
 
 /* Style for the show amount span */
 #expenseList .expense-amount {
   font-weight: bold;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 /* Style for the title span */
@@ -93,18 +100,17 @@ body {
 
 /* Highlight expense amounts*/
 .expense-amount {
-  font-weight: bold; 
-  background-color: #752a97; 
-  padding: 5px 10px; 
+  font-weight: bold;
+  background-color: #752a97;
+  padding: 5px 10px;
   border: 1px solid #ffffff;
-  border-radius: 5px; 
-  
+  border-radius: 5px;
 }
 
 .expense-item .expense-month {
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   font-weight: bold;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .expense-date-box {
@@ -117,16 +123,37 @@ body {
 }
 
 .expense-date-box .expense-month {
-  font-size: 0.8rem; 
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
 .expense-date-box .expense-year {
-  font-size: 0.7rem; 
-  color: #ffffff; 
+  font-size: 0.7rem;
+  color: #ffffff;
 }
 
 .expense-date-box .expense-day {
-  font-size: 1rem; 
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Style for Monthly Spending Summary */
+.card h5 {
+  color: #f7f8f7;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#summaryList .list-group-item {
+  background-color: #34393f;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px; /* Add gap between items */
+}
+
+#summaryList .list-group-item span {
+  color: #ffffff;
+  font-size: 1rem;
   font-weight: bold;
 }
