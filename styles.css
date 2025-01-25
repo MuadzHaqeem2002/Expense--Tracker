@@ -9,7 +9,7 @@ body {
   background-color: #2a292b;
 }
 
-/* Add New Expense Box Styling */
+/* Expense Box Styling */
 .add-expense-box {
   background-color: #ba92cc;
   padding: 20px;
@@ -18,6 +18,8 @@ body {
 
 .add-expense-box .btn {
   background-color: #752a97;
+  border-style: none;
+  
 }
 
 /* Responsive layout for vertical progress bars */
@@ -25,7 +27,7 @@ body {
   display: flex;
   justify-content: space-between; /* Space between bars */
   padding: 20px;
-  background-color: #b17aca; /* Dark blue-gray background */
+  background-color: #b17aca; 
   border-radius: 10px; /* Rounded corners */
 }
 
@@ -37,21 +39,21 @@ body {
 
 .chart-container .progress {
   position: relative;
-  width: 100%; /* Full width of container */
-  height: 200px; /* Height of progress bar */
-  background-color: #cbbed1; /* Light gray background */
+  width: 100%; 
+  height: 200px; 
+  background-color: #cbbed1; 
   border-radius: 10px;
   display: flex;
   flex-direction: column-reverse; /* Ensure bar grows upward */
 }
 
 .chart-container .progress-bar {
-  background-color: #272657; /* Green bar */
-  width: 100%; /* Full width */
+  background-color: #272657; 
+  width: 100%; 
 }
 
 .chart-container .d-flex span:last-child {
-  color: #ffffff; /* For months */
+  color: #ffffff;
   font-weight: bold;
   margin-top: 10px;
   font-size: 0.8rem; /* Default font size for months */
@@ -70,29 +72,61 @@ body {
   }
 }
 
-/* Style for individual expense items */
+/* Style for grouping individual expense items */
 #expenseList .list-group-item {
-  background-color: #34393f; /* Slightly lighter background */
-  border: none; /* Remove default border */
+  background-color: #34393f; 
+  border: none; 
   border-radius: 10px;
-  padding: 12px; /* Add spacing */
+  padding: 12px; 
 }
 
-/* Style for the date span */
-#expenseList .expense-date {
-  font-size: 0.9rem;
-  color: #0ea5e9; /* Light blue for dates */
-  font-weight: bold;
-}
-
-/* Style for the amount span */
+/* Style for the show amount span */
 #expenseList .expense-amount {
   font-weight: bold;
-  color: #28a745; /* Green for amounts */
+  color: #ffffff; 
 }
 
 /* Style for the title span */
 #expenseList .expense-title {
-  text-align: right;
-  color: #ffffff; /* White for titles */
+  color: #ffffff;
+}
+
+/* Highlight expense amounts*/
+.expense-amount {
+  font-weight: bold; 
+  background-color: #752a97; 
+  padding: 5px 10px; 
+  border: 1px solid #ffffff;
+  border-radius: 5px; 
+  
+}
+
+.expense-item .expense-month {
+  font-size: 1.1rem; 
+  font-weight: bold;
+  color: #ffffff; 
+}
+
+.expense-date-box {
+  width: 80px; /* Width of the box */
+  height: 80px; /* Height of the box */
+  border: 2px solid #ffffff; /* White border */
+  border-radius: 12px; /* Rounded corners */
+  background-color: #333333; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+.expense-date-box .expense-month {
+  font-size: 0.8rem; 
+  font-weight: bold;
+}
+
+.expense-date-box .expense-year {
+  font-size: 0.7rem; 
+  color: #ffffff; 
+}
+
+.expense-date-box .expense-day {
+  font-size: 1rem; 
+  font-weight: bold;
 }

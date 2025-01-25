@@ -51,13 +51,15 @@ $(document).ready(function () {
       filteredExpenses.forEach((exp, index) => {
         $expenseList.append(`
           <li class="list-group-item expense-item mb-3 d-flex justify-content-between align-items-center">
-            <span class="expense-date">${new Date(
-              exp.date
-            ).toLocaleDateString()}</span>
-            <span class="expense-amount">$${exp.amount.toFixed(2)}</span>
+            <div class="expense-date-box text-center d-flex flex-column justify-content-center align-items-center">
+              <span class="expense-month">${new Date(exp.date).toLocaleDateString('en-US', { month: 'long' })}</span>
+              <span class="expense-year">${new Date(exp.date).getFullYear()}</span>
+              <span class="expense-day">${new Date(exp.date).getDate()}</span>
+            </div>
             <span class="expense-title text-end">${exp.title}</span>
+            <span class="expense-amount">$${exp.amount.toFixed(2)}</span>
           </li>
-        `);
+        `);   
       });
     }
 
