@@ -71,5 +71,35 @@ body {
   }
 }
 
+/* Style for individual expense items */
+#expenseList .list-group-item {
+  background-color: #34393f; /* Slightly lighter background */
+  border: none; /* Remove default border */
+  border-radius: 10px;
+  padding: 12px; /* Add spacing */
+  
+}
+
+/* Style for the date span */
+#expenseList .expense-date {
+  font-size: 0.9rem; 
+  color: #0ea5e9; /* Light blue for dates */
+  font-weight: bold;
+}
+
+/* Style for the amount span */
+#expenseList .expense-amount {
+  font-weight: bold;
+  color: #28a745; /* Green for amounts */
+}
+
+/* Style for the title span */
+#expenseList .expense-title {
+  text-align: right;
+  color: #ffffff; /* White for titles */
+}
+
+
+
 
 
