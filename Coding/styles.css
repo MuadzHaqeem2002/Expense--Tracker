@@ -1,100 +1,73 @@
 body {
-  background-color: #2c67b4;
+  background-color: #3c3f42;
   padding: 20px;
 }
-
 
 .card {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #383b41;
+  background-color: #2a292b;
 }
 
 /* Add New Expense Box Styling */
 .add-expense-box {
-  background-color: #383b41; 
-  color: white;
-  height: auto;
+  background-color: #ba92cc;  
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-in-out;
+  
 }
 
 .add-expense-box .btn {
-  font-size: 18px;
-  padding: 10px 20px;
+  background-color: #752a97;
 }
 
-/* Progress Bar Labels (Month and Money) */
-.chart-container .d-flex span:first-child {
-  color: #ffffff; /* Orange for month names */
-  font-weight: bold; /* Optional: Make it bold */
-}
-
-.chart-container .d-flex span:last-child {
-  color: #ffffff; /* Green for money amounts */
-  font-weight: bold; /* Optional: Make it bold */
-}
-
-  
- /* Responsive layout for vertical progress bars */
 /* Responsive layout for vertical progress bars */
 .chart-container {
   display: flex;
   justify-content: space-between; /* Space between bars */
-  align-items: flex-end; /* Align bars to the bottom */
-  width: 100%; /* Full width */
-  max-width: 100%; /* Ensure it remains responsive */
   padding: 20px;
-  overflow-x: auto; /* Allow horizontal scroll if content overflows */
+  background-color: #b17aca; /* Dark blue-gray background */
+  border-radius: 10px; /* Rounded corners */
 }
 
 .chart-container .d-flex {
   flex-direction: column;
   align-items: center;
-  margin: 0 5px; /* Spacing between bars */
-  width: 6%; /* Default width of each bar, adjusts with flexbox */
+  width: 4.5%; /* Default width of each bar, adjusts with flexbox */
 }
 
 .chart-container .progress {
   position: relative;
   width: 100%; /* Full width of container */
   height: 200px; /* Height of progress bar */
-  background-color: #e9ecef; /* Light gray background */
-  border-radius: 5px;
+  background-color: #cbbed1; /* Light gray background */
+  border-radius: 10px;
   display: flex;
   flex-direction: column-reverse; /* Ensure bar grows upward */
 }
 
 .chart-container .progress-bar {
-  background-color: #28a745; /* Green bar */
+  background-color: #272657; /* Green bar */
   width: 100%; /* Full width */
-}
-
-.chart-container .d-flex span:first-child {
-  color: #ffffff; /* For amounts */
-  font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .chart-container .d-flex span:last-child {
   color: #ffffff; /* For months */
   font-weight: bold;
   margin-top: 10px;
-  font-size: 1rem; /* Default font size for months */
+  font-size: 0.8rem; /* Default font size for months */
 }
 
 /* Media query for small screens */
 @media (max-width: 768px) {
   .chart-container .d-flex span:last-child {
-    font-size: 0.8rem; /* Smaller font size for months */
+    font-size: 0.6rem; /* Smaller font size for months */
   }
 }
 
 @media (max-width: 576px) {
   .chart-container .d-flex span:last-child {
-    font-size: 0.6rem; /* Even smaller font size for very small screens */
+    font-size: 0.4rem; /* Even smaller font size for very small screens */
   }
 }
 
