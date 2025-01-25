@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  // Array to store all expense data
-  const expenses = [];
-  
+  // Load expenses from localStorage, or initialize as an empty array
+  const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
   // DOM element references
   const $defaultView = $("#defaultView"); // Default view with "Add New Expense" button
   const $formView = $("#formView"); // Expense form view
@@ -27,7 +27,7 @@ $(document).ready(function () {
   // Populate year dropdown with unique years from expense data
   const populateYears = () => {
     const years = [
-      ...new Set(expenses.map((exp) => new Date(exp.date).getFullYear())),
+      ...new Set(expenses.map((exp) => new Date(exp.date).getFullYear())) 
     ];
     $filterYear.empty().append('<option value="all">All</option>');
     years.forEach((year) =>
@@ -187,6 +187,9 @@ $(document).ready(function () {
 
     // Add expense to array
     expenses.push({ title, amount, date });
+
+    // Save the updated expenses array to localStorage
+    localStorage.setItem('expenses', JSON.stringify(expenses));
 
     // Reset the form and toggle the view
     $expenseForm[0].reset();
