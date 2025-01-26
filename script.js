@@ -1,81 +1,79 @@
 $(document).ready(function () {
-  // Load expenses from localStorage, or initialize as an empty array
-  const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+  const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-  // DOM element references
-  const $defaultView = $("#defaultView"); // Default view with "Add New Expense" button
-  const $formView = $("#formView"); // Expense form view
-  const $expenseForm = $("#expenseForm"); // Form element for expense submission
-  const $expenseList = $("#expenseList"); // List to display expenses
-  const $filterYear = $("#filterYear"); // Year filter dropdown
-  const $noExpensesMessage = $("#noExpensesMessage"); // Message displayed when no expenses are found
-  const $showFormButton = $("#showFormButton"); // Button to show the expense form
-  const $cancelButton = $("#cancelButton"); // Button to hide the expense form
+  const $defaultView = $("#defaultView");
+  const $formView = $("#formView");
+  const $expenseForm = $("#expenseForm");
+  const $expenseList = $("#expenseList");
+  const $filterYear = $("#filterYear");
+  const $noExpensesMessage = $("#noExpensesMessage");
+  const $showFormButton = $("#showFormButton");
+  const $cancelButton = $("#cancelButton");
 
-  // Show the Expense Form
   $showFormButton.on("click", function () {
-    $defaultView.hide(); // Hide the default view
-    $formView.show(); // Show the form view
+    $defaultView.hide();
+    $formView.show();
   });
 
-  // Hide the Expense Form
   $cancelButton.on("click", function () {
-    $formView.hide(); // Hide the form view
-    $defaultView.show(); // Show the default view
+    $formView.hide();
+    $defaultView.show();
   });
 
-  // Populate year dropdown with unique years from expense data
   const populateYears = () => {
-    const years = [
-      ...new Set(expenses.map((exp) => new Date(exp.date).getFullYear())) 
-    ];
+    const years = [...new Set(expenses.map((exp) => new Date(exp.date).getFullYear()))];
     $filterYear.empty().append('<option value="all">All</option>');
     years.forEach((year) =>
       $filterYear.append(`<option value="${year}">${year}</option>`)
     );
   };
 
-  // Render expenses in the expense list
   const renderExpenses = () => {
-    const selectedYear = $filterYear.val();
-    const filteredExpenses =
-      selectedYear === "all"
-        ? expenses
-        : expenses.filter(
-            (exp) => new Date(exp.date).getFullYear().toString() === selectedYear
-          );
+  const selectedYear = $filterYear.val();
+  const filteredExpenses =
+    selectedYear === "all"
+      ? expenses
+      : expenses.filter(
+          (exp) => new Date(exp.date).getFullYear().toString() === selectedYear
+        );
 
-    $expenseList.empty(); // Clear the list before appending new data
+  $expenseList.empty();
 
-    if (filteredExpenses.length === 0) {
-      $noExpensesMessage.show(); // Show "no expenses" message
-    } else {
-      $noExpensesMessage.hide(); // Hide "no expenses" message
+  if (filteredExpenses.length === 0) {
+    $noExpensesMessage.show();
+  } else {
+    $noExpensesMessage.hide();
 
-      // Append each expense to the list
-      filteredExpenses.forEach((exp) => {
-        $expenseList.append(`
-          <li class="list-group-item expense-item mb-3 d-flex justify-content-between align-items-center">
-            <div class="expense-date-box text-center d-flex flex-column justify-content-center align-items-center">
-              <span class="expense-month">${new Date(exp.date).toLocaleDateString('en-US', { month: 'long' })}</span>
-              <span class="expense-year">${new Date(exp.date).getFullYear()}</span>
-              <span class="expense-day">${new Date(exp.date).getDate()}</span>
-            </div>
-            <span class="expense-title text-end">${exp.title}</span>
-            <span class="expense-amount">$${exp.amount.toFixed(2)}</span>
-          </li>
-        `);
-      });
-    }
+    filteredExpenses.forEach((exp, index) => {
+      $expenseList.append(`
+        <li class="list-group-item expense-item mb-3 d-flex justify-content-between align-items-center">
+          <div class="expense-date-box text-center d-flex flex-column justify-content-center align-items-center">
+            <span class="expense-month">${new Date(exp.date).toLocaleDateString("en-US", {
+              month: "long",
+            })}</span>
+            <span class="expense-year">${new Date(exp.date).getFullYear()}</span>
+            <span class="expense-day">${new Date(exp.date).getDate()}</span>
+          </div>
+          <span class="expense-title text-end">${exp.title}</span>
+          <div class="d-flex align-items-center">
+            <span class="expense-amount me-2">$${exp.amount.toFixed(2)}</span>
+            <button class="btn btn-danger btn-sm delete-expense" data-index="${index}">
+              Delete
+            </button>
+          </div>
+        </li>
+      `);
+    });
+  }
 
-    updateChart(filteredExpenses); // Update the chart with filtered data
-    renderSummary(filteredExpenses); // Update the monthly spending summary
-  };
+  updateChart(filteredExpenses);
+  renderSummary(filteredExpenses);
+};
 
-  // Render monthly spending summary
+
   const renderSummary = (filteredExpenses) => {
     const summaryList = $("#summaryList");
-    summaryList.empty(); // Clear the summary list
+    summaryList.empty();
 
     if (filteredExpenses.length === 0) {
       summaryList.append(`
@@ -86,15 +84,13 @@ $(document).ready(function () {
       return;
     }
 
-    const monthlyTotals = Array(12).fill(0); // Initialize totals for all months
+    const monthlyTotals = Array(12).fill(0);
 
-    // Calculate total spending by month
     filteredExpenses.forEach((exp) => {
-      const month = new Date(exp.date).getMonth(); // 0 for Jan, 1 for Feb, etc.
+      const month = new Date(exp.date).getMonth();
       monthlyTotals[month] += exp.amount;
     });
 
-    // Append the monthly totals to the summary
     monthlyTotals.forEach((total, index) => {
       if (total > 0) {
         const monthName = [
@@ -122,7 +118,6 @@ $(document).ready(function () {
     });
   };
 
-  // Update the chart with filtered data
   const updateChart = (filteredExpenses) => {
     const monthlyTotals = Array(12).fill(0);
 
@@ -131,10 +126,10 @@ $(document).ready(function () {
       monthlyTotals[month] += exp.amount;
     });
 
-    const maxExpense = Math.max(...monthlyTotals, 1); // Prevent division by zero
+    const maxExpense = Math.max(...monthlyTotals, 1);
 
     const chartContainer = $(".chart-container");
-    chartContainer.empty(); // Clear previous chart content
+    chartContainer.empty();
 
     monthlyTotals.forEach((total, index) => {
       const monthName = [
@@ -171,7 +166,6 @@ $(document).ready(function () {
     });
   };
 
-  // Handle form submission to add a new expense
   $expenseForm.on("submit", function (e) {
     e.preventDefault();
 
@@ -179,30 +173,31 @@ $(document).ready(function () {
     const amount = parseFloat($("#amount").val());
     const date = $("#date").val();
 
-    // Validate inputs
     if (!title || !amount || !date || amount <= 0) {
       alert("Please fill out all fields with valid data.");
       return;
     }
 
-    // Add expense to array
     expenses.push({ title, amount, date });
+    localStorage.setItem("expenses", JSON.stringify(expenses));
 
-    // Save the updated expenses array to localStorage
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-
-    // Reset the form and toggle the view
     $expenseForm[0].reset();
     $formView.hide();
     $defaultView.show();
 
-    populateYears(); // Update year dropdown
-    renderExpenses(); // Refresh the expense list and chart
+    populateYears();
+    renderExpenses();
   });
 
-  // Handle year filter changes
   $filterYear.on("change", renderExpenses);
 
-  // Initial rendering of expenses and chart
+  $expenseList.on("click", ".delete-expense", function () {
+    const index = $(this).data("index");
+    expenses.splice(index, 1);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+    renderExpenses();
+    populateYears();
+  });
+
   renderExpenses();
 });

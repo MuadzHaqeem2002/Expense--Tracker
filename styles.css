@@ -157,3 +157,12 @@ body {
   font-size: 1rem;
   font-weight: bold;
 }
+
+.delete-expense {
+  font-size: 0.5rem; /* Smaller font size */
+  padding: 4px 8px; /* Reduced padding */
+  line-height: 1.5; /* Tighter line spacing */
+}
+
+
+
